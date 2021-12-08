@@ -31,4 +31,8 @@ project {
 
 object MyDSLBuild : BuildType({
     name = "myDSLBuild"
+
+    vcs {
+        root(DslContext.settingsRoot)
+    }
 })
