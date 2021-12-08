@@ -31,8 +31,17 @@ project {
 
 object MyDSLBuild : BuildType({
     name = "myDSLBuild"
+    artifactRules = "matlabTestArtifacts"
 
     vcs {
         root(DslContext.settingsRoot)
     }
+    steps {
+        step {
+            type = "matlabRunnerType"
+            param("MatlabMessageKey", "pwd, disp('Building MEX File'), buildMEXfiles, runAllTests")
+            param("MatlabPathKey", "/mnt/f/MATLAB_21b_Linux/bin/matlab")
+        }
+    }
+
 })
