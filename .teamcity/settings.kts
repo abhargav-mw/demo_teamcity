@@ -1,4 +1,5 @@
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
+import jetbrains.buildServer.configs.kotlin.v2019_2.projectFeatures.buildReportTab
 
 /*
 The settings script is an entry point for defining a TeamCity
@@ -27,16 +28,25 @@ version = "2021.2"
 project {
 
     buildType(MyDSLBuild)
+
+    features {
+        buildReportTab {
+            id = "PROJECT_EXT_3"
+            title = "CoverageReport"
+            startPage = "index.html"
+        }
+    }
 }
 
 object MyDSLBuild : BuildType({
     name = "myDSLBuild"
 
     artifactRules = "matlabTestArtifacts"
-    
+
     vcs {
         root(DslContext.settingsRoot)
     }
+
     steps {
         step {
             type = "matlabRunnerType"
